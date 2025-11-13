@@ -1,0 +1,81 @@
+﻿@model IEnumerable<Zeleznicka_stanica.Models.RedVoznjeBO>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.RedVoznjeID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.VozID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Datum)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Vreme)
+        </th>   
+        <th>
+            @Html.DisplayNameFor(model => model.Peron)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Kasni)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PolazakID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.OdredisteID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Cena)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Otkazan)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in ViewBag.RedVoznje) {
+    <tr>
+        <td>
+            @item.RedVoznjeID
+        </td>
+        <td>
+            @item.VozID
+        </td>
+        <td>
+            @item.Datum
+        </td>
+        <td>
+            @item.Vreme
+        </td>
+        <td>
+            @item.Peron
+        </td>
+        <td>
+            @item.Kasni
+        </td>
+        <td>
+            @item.PolazakID
+        </td>
+        <td>
+            @item.OdredisteID
+        </td>
+        <td>
+            @item.Cena
+        </td>
+        <td>
+            @item.Otkazan
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+        </td>
+    </tr>
+}
+
+</table>

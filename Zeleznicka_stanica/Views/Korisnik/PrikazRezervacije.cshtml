@@ -1,0 +1,142 @@
+﻿@model IEnumerable<Zeleznicka_stanica.Models.RezervacijaBO>
+
+
+@*<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.RezervacijaID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.KorisnikID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RedVoznjeID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Datum)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Vreme)
+        </th>
+        <th></th>
+    </tr>*@
+
+    @*@foreach (var item in ViewBag.Rezervacije)
+    {
+        <tr>
+            <td>
+                @item.RezervacijaID
+            </td>
+            <td>
+                @item.KorisnikID
+            </td>
+            <td>
+                @item.RedVoznjeID
+            </td>
+            <td>
+                @item.Datum.ToString("dd/MM/yyyy")
+            </td>
+            <td>
+                @item.Vreme.ToString("hh':'mm':'ss")
+            </td>
+            <td>
+                @Html.ActionLink("Delete", "BrisiRezervaciju", new { RezervacijaID = item.RezervacijaID },
+               new { onclick = "return confirm('Are you sure that you want to delete?') ", @class = "btn btn-danger" })
+            </td>
+        </tr>
+
+
+    }*@
+
+@*</table>*@
+<div class="row">
+    <div class="col-md-12">
+
+        <div class="col-md-2" style="text-align:center">
+            <h3>Broj rezervacije</h3>
+        </div>
+        
+        <div class="col-md-2" style="text-align:center">
+            <h3>Broj voza</h3>
+        </div>
+        <div class="col-md-4" style="text-align:center">
+            <h3>Datum polaska</h3>
+        </div>
+        <div class="col-md-2" style="text-align:center">
+            <h3>Vreme</h3>
+        </div>
+    </div>
+</div>
+@foreach (var item in ViewBag.Rezervacije)
+{
+    <div class="row">
+        @foreach (var rv in ViewBag.redVoznje)
+        {
+            if (rv.RedVoznjeID == item.RedVoznjeID)
+            {
+                if (rv.Otkazan == "DA")
+                {
+                    <div class="col-md-12 panel panel-danger">
+                        <div class="panel-heading"><h3>Polazak ovog voza je otkazan, molim obrisite rezervaciju!</h3></div>
+
+                        <div class="col-md-2 panel-body" style="text-align:center">
+                            <H3>@item.RezervacijaID</H3>
+                        </div>
+                        
+                        <div class="col-md-2 panel-body" style="text-align:center">
+                            <H3>@rv.VozID</H3>
+                        </div>
+                        <div class="col-md-4 panel-body" style="text-align:center">
+                            <h3>@rv.Datum.ToString("dd/MM/yyyy")</h3>
+                            @*<H3>@item.Datum.ToString("dd/MM/yyyy")</H3>*@
+                        </div>
+                        <div class="col-md-2 panel-body" style="text-align:center">
+                            <h3>@rv.Vreme.ToString("hh':'mm':'ss")</h3>
+                            @*<H3>@item.Vreme.ToString("hh':'mm':'ss")</H3>*@
+                        </div>
+                        <div class="col-md-2 panel-body" style="text-align:center">
+                            <h3>
+                                @Html.ActionLink("Obriši", "BrisiRezervaciju", new { RezervacijaID = item.RezervacijaID },
+               new { onclick = "return confirm('Are you sure that you want to delete?') ", @class = "btn btn-danger" })
+                            </h3>
+                        </div>
+
+                    </div>
+                }
+
+                else
+                {
+                    <div class="col-md-12 panel panel-default">
+
+                        <div class="col-md-2 panel-body" style="text-align:center">
+                            <H3>@item.RezervacijaID</H3>
+                        </div>
+                        
+                        <div class="col-md-2 panel-body" style="text-align:center">
+                            <H3>@rv.VozID</H3>
+                        </div>
+                        <div class="col-md-4 panel-body" style="text-align:center">
+                            <h3>@rv.Datum.ToString("dd/MM/yyyy")</h3>
+                            @*<H3>@item.Datum.ToString("dd/MM/yyyy")</H3>*@
+                        </div>
+                        <div class="col-md-2 panel-body" style="text-align:center">
+                            <h3>@rv.Vreme.ToString("hh':'mm':'ss")</h3>
+                            @*<H3>@item.Vreme.ToString("hh':'mm':'ss")</H3>*@
+                        </div>
+                        <div class="col-md-2 panel-body" style="text-align:center">
+                            <h3>
+                                @Html.ActionLink("Obriši", "BrisiRezervaciju", new { RezervacijaID = item.RezervacijaID },
+               new { onclick = "return confirm('Are you sure that you want to delete?') ", @class = "btn btn-danger" })
+                            </h3>
+                        </div>
+                    </div>
+                }
+
+            }
+        }
+
+
+    </div>
+    <br />
+    <br />
+}

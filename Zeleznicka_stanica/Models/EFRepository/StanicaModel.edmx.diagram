@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="18e354850913403e9edf62200ce56766" Name="Diagram1">
+        <EntityTypeShape EntityType="ZeleznickaStanicaModel.DodatnaStanica" Width="1.5" PointX="5.25" PointY="5.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ZeleznickaStanicaModel.Korisnik" Width="1.5" PointX="3" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ZeleznickaStanicaModel.RedVoznje" Width="1.5" PointX="3" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ZeleznickaStanicaModel.Rezervacija" Width="1.5" PointX="5.25" PointY="1.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="ZeleznickaStanicaModel.Stanica" Width="1.5" PointX="0.75" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ZeleznickaStanicaModel.sysdiagrams" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ZeleznickaStanicaModel.Voz" Width="1.5" PointX="1.25" PointY="9.5" IsExpanded="true" />
+        <AssociationConnector Association="ZeleznickaStanicaModel.FK_DodatnaStanica_RedVoznje" ManuallyRouted="false" />
+        <AssociationConnector Association="ZeleznickaStanicaModel.FK_Korisnik_Stanica" ManuallyRouted="false" />
+        <AssociationConnector Association="ZeleznickaStanicaModel.FK_Rezervacija_Korisnik" ManuallyRouted="false" />
+        <AssociationConnector Association="ZeleznickaStanicaModel.FK_DodatnaStanica_Stanica" />
+        <AssociationConnector Association="ZeleznickaStanicaModel.FK_RedVoznje_Stanica1" />
+        <AssociationConnector Association="ZeleznickaStanicaModel.FK_RedVoznje_Stanica2" />
+        <AssociationConnector Association="ZeleznickaStanicaModel.FK_RedVoznje_Voz" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

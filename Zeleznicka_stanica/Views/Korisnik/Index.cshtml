@@ -1,0 +1,75 @@
+﻿
+
+@{
+    ViewBag.Title = "Home Page";
+}
+
+
+
+@if (TempData["Unos"] != null)
+{
+<script type="text/javascript">
+
+    window.onload = function () {
+        alert("Morate popuniti sva polja");
+    };
+</script>
+}
+
+<br />
+<br />
+<form method="post" action="RedVoznjeForm">
+    <div class="row" style="margin-bottom:50px; text-align:center;">
+
+
+
+        <div class="row" style="margin-bottom:50px; margin-left:38%;">
+            @Html.DropDownList("id", ViewBag.Polazak as SelectList, "Odaberi", new { id = "StanicaID", @class = "form-control", @onchange = "OnSelectedPolazak(this.value)" })
+
+
+
+        </div>
+
+
+
+        <div class="row" style="margin-bottom:50px; margin-left:38%; " id="OdredistePartial">
+
+        </div>
+        <div class="row" style="margin-bottom:50px; margin-left:38%;">
+            <input type="date" class="form-control" id="datum" name="datum" required />
+
+        </div>
+
+
+    </div>
+    <br />
+    <br />
+    <div style="text-align:center">
+        <input type="submit" value="pronadji" class="btn btn-primary" />
+    </div>
+</form>
+<script type="text/javascript">
+
+    function OnSelectedPolazak() {
+        $.get("/Home/GetOdrediste", {
+            redVoznjeID: $("#StanicaID").val()
+        },
+            function (data) {
+                $("#OdredistePartial").html(data);
+            });
+    }
+
+</script>
+
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+
+@if (TempData["Pun"] != null)
+    {
+    <script type="text/javascript">
+
+        window.onload = function () {
+            alert("Ovaj voz nema slobodnih mesta");
+        };
+    </script>
+
+    }

@@ -1,0 +1,211 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ZeleznickaStanicaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="DodatnaStanica">
+    <Key>
+      <PropertyRef Name="DodatnaStanicaID" />
+    </Key>
+    <Property Name="DodatnaStanicaID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="RedVoznjeID" Type="Int32" Nullable="false" />
+    <Property Name="VremeDolaska" Type="Time" Nullable="false" Precision="7" />
+    <Property Name="VremePolaska" Type="Time" Nullable="false" Precision="7" />
+    <NavigationProperty Name="RedVoznje" Relationship="Self.FK_DodatnaStanica_RedVoznje" FromRole="DodatnaStanica" ToRole="RedVoznje" />
+    <Property Name="StanicaID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Stanica" Relationship="ZeleznickaStanicaModel.FK_DodatnaStanica_Stanica" FromRole="DodatnaStanica" ToRole="Stanica" />
+  </EntityType>
+  <EntityType Name="Korisnik">
+    <Key>
+      <PropertyRef Name="KorisnikID" />
+    </Key>
+    <Property Name="KorisnikID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="StanicaID" Type="Int32" />
+    <Property Name="Ime" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Prezime" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Sifra" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Status" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Stanica" Relationship="Self.FK_Korisnik_Stanica" FromRole="Korisnik" ToRole="Stanica" />
+    <NavigationProperty Name="Rezervacija" Relationship="Self.FK_Rezervacija_Korisnik" FromRole="Korisnik" ToRole="Rezervacija" />
+  </EntityType>
+  <EntityType Name="RedVoznje">
+    <Key>
+      <PropertyRef Name="RedVoznjeID" />
+    </Key>
+    <Property Name="RedVoznjeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="VozID" Type="Int32" Nullable="false" />
+    <Property Name="Datum" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Vreme" Type="Time" Nullable="false" Precision="7" />
+    <Property Name="Peron" Type="Int32" Nullable="false" />
+    <Property Name="Kasni" Type="Boolean" Nullable="false" />
+    <Property Name="Cena" Type="Int32" />
+    <NavigationProperty Name="DodatnaStanica" Relationship="Self.FK_DodatnaStanica_RedVoznje" FromRole="RedVoznje" ToRole="DodatnaStanica" />
+    <Property Name="Otkazan" Type="Boolean" />
+    <Property Name="PolazakID" Type="Int32" Nullable="false" />
+    <Property Name="OdredisteID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Stanica1" Relationship="ZeleznickaStanicaModel.FK_RedVoznje_Stanica1" FromRole="RedVoznje" ToRole="Stanica" />
+    <NavigationProperty Name="Stanica11" Relationship="ZeleznickaStanicaModel.FK_RedVoznje_Stanica2" FromRole="RedVoznje" ToRole="Stanica" />
+    <NavigationProperty Name="Voz" Relationship="ZeleznickaStanicaModel.FK_RedVoznje_Voz" FromRole="RedVoznje" ToRole="Voz" />
+  </EntityType>
+  <EntityType Name="Rezervacija">
+    <Key>
+      <PropertyRef Name="RezervacijaID" />
+    </Key>
+    <Property Name="RezervacijaID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="KorisnikID" Type="Int32" Nullable="false" />
+    <Property Name="RedVoznjeID" Type="Int32" Nullable="false" />
+    <Property Name="Datum" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Vreme" Type="Time" Nullable="false" Precision="7" />
+    <NavigationProperty Name="Korisnik" Relationship="Self.FK_Rezervacija_Korisnik" FromRole="Rezervacija" ToRole="Korisnik" />
+  </EntityType>
+  <EntityType Name="Stanica">
+    <Key>
+      <PropertyRef Name="StanicaID" />
+    </Key>
+    <Property Name="StanicaID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Zemlja" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Grad" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Korisnik" Relationship="Self.FK_Korisnik_Stanica" FromRole="Stanica" ToRole="Korisnik" />
+    <NavigationProperty Name="DodatnaStanica" Relationship="ZeleznickaStanicaModel.FK_DodatnaStanica_Stanica" FromRole="Stanica" ToRole="DodatnaStanica" />
+    <NavigationProperty Name="RedVoznje1" Relationship="ZeleznickaStanicaModel.FK_RedVoznje_Stanica1" FromRole="Stanica" ToRole="RedVoznje" />
+    <NavigationProperty Name="RedVoznje11" Relationship="ZeleznickaStanicaModel.FK_RedVoznje_Stanica2" FromRole="Stanica" ToRole="RedVoznje" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="Voz">
+    <Key>
+      <PropertyRef Name="VozID" />
+    </Key>
+    <Property Name="VozID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="BrojMesta" Type="Int32" Nullable="false" />
+    <Property Name="BrojSlobodnihMesta" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="RedVoznje" Relationship="ZeleznickaStanicaModel.FK_RedVoznje_Voz" FromRole="Voz" ToRole="RedVoznje" />
+  </EntityType>
+  <Association Name="FK_DodatnaStanica_RedVoznje">
+    <End Role="RedVoznje" Type="Self.RedVoznje" Multiplicity="1" />
+    <End Role="DodatnaStanica" Type="Self.DodatnaStanica" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="RedVoznje">
+        <PropertyRef Name="RedVoznjeID" />
+      </Principal>
+      <Dependent Role="DodatnaStanica">
+        <PropertyRef Name="RedVoznjeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Korisnik_Stanica">
+    <End Role="Stanica" Type="Self.Stanica" Multiplicity="0..1" />
+    <End Role="Korisnik" Type="Self.Korisnik" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Stanica">
+        <PropertyRef Name="StanicaID" />
+      </Principal>
+      <Dependent Role="Korisnik">
+        <PropertyRef Name="StanicaID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Rezervacija_Korisnik">
+    <End Role="Korisnik" Type="Self.Korisnik" Multiplicity="1" />
+    <End Role="Rezervacija" Type="Self.Rezervacija" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Korisnik">
+        <PropertyRef Name="KorisnikID" />
+      </Principal>
+      <Dependent Role="Rezervacija">
+        <PropertyRef Name="KorisnikID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="ZeleznickaStanicaEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="DodatnaStanica" EntityType="Self.DodatnaStanica" />
+    <EntitySet Name="Korisnik" EntityType="Self.Korisnik" />
+    <EntitySet Name="RedVoznje" EntityType="Self.RedVoznje" />
+    <EntitySet Name="Rezervacija" EntityType="Self.Rezervacija" />
+    <EntitySet Name="Stanica" EntityType="Self.Stanica" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+    <EntitySet Name="Voz" EntityType="Self.Voz" />
+    <AssociationSet Name="FK_DodatnaStanica_RedVoznje" Association="Self.FK_DodatnaStanica_RedVoznje">
+      <End Role="RedVoznje" EntitySet="RedVoznje" />
+      <End Role="DodatnaStanica" EntitySet="DodatnaStanica" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Korisnik_Stanica" Association="Self.FK_Korisnik_Stanica">
+      <End Role="Stanica" EntitySet="Stanica" />
+      <End Role="Korisnik" EntitySet="Korisnik" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Rezervacija_Korisnik" Association="Self.FK_Rezervacija_Korisnik">
+      <End Role="Korisnik" EntitySet="Korisnik" />
+      <End Role="Rezervacija" EntitySet="Rezervacija" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DodatnaStanica_Stanica" Association="ZeleznickaStanicaModel.FK_DodatnaStanica_Stanica">
+      <End Role="Stanica" EntitySet="Stanica" />
+      <End Role="DodatnaStanica" EntitySet="DodatnaStanica" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RedVoznje_Stanica1" Association="ZeleznickaStanicaModel.FK_RedVoznje_Stanica1">
+      <End Role="Stanica" EntitySet="Stanica" />
+      <End Role="RedVoznje" EntitySet="RedVoznje" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RedVoznje_Stanica2" Association="ZeleznickaStanicaModel.FK_RedVoznje_Stanica2">
+      <End Role="Stanica" EntitySet="Stanica" />
+      <End Role="RedVoznje" EntitySet="RedVoznje" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RedVoznje_Voz" Association="ZeleznickaStanicaModel.FK_RedVoznje_Voz">
+      <End Role="Voz" EntitySet="Voz" />
+      <End Role="RedVoznje" EntitySet="RedVoznje" />
+    </AssociationSet>
+  </EntityContainer>
+  <Association Name="FK_DodatnaStanica_Stanica">
+    <End Type="ZeleznickaStanicaModel.Stanica" Role="Stanica" Multiplicity="1" />
+    <End Type="ZeleznickaStanicaModel.DodatnaStanica" Role="DodatnaStanica" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Stanica">
+        <PropertyRef Name="StanicaID" />
+      </Principal>
+      <Dependent Role="DodatnaStanica">
+        <PropertyRef Name="StanicaID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RedVoznje_Stanica1">
+    <End Type="ZeleznickaStanicaModel.Stanica" Role="Stanica" Multiplicity="1" />
+    <End Type="ZeleznickaStanicaModel.RedVoznje" Role="RedVoznje" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Stanica">
+        <PropertyRef Name="StanicaID" />
+      </Principal>
+      <Dependent Role="RedVoznje">
+        <PropertyRef Name="PolazakID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RedVoznje_Stanica2">
+    <End Type="ZeleznickaStanicaModel.Stanica" Role="Stanica" Multiplicity="1" />
+    <End Type="ZeleznickaStanicaModel.RedVoznje" Role="RedVoznje" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Stanica">
+        <PropertyRef Name="StanicaID" />
+      </Principal>
+      <Dependent Role="RedVoznje">
+        <PropertyRef Name="OdredisteID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RedVoznje_Voz">
+    <End Type="ZeleznickaStanicaModel.Voz" Role="Voz" Multiplicity="1" />
+    <End Type="ZeleznickaStanicaModel.RedVoznje" Role="RedVoznje" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Voz">
+        <PropertyRef Name="VozID" />
+      </Principal>
+      <Dependent Role="RedVoznje">
+        <PropertyRef Name="VozID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

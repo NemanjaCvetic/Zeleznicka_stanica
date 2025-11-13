@@ -1,0 +1,49 @@
+﻿@model IEnumerable<Zeleznicka_stanica.Models.DodatnaStanicaBO>
+
+
+
+<h2>Cena karte: @ViewBag.Cena</h2>
+<br />
+<h2>Broj slobodnih mesta: @ViewBag.SlobodnaMesta</h2>
+<table class="table">
+    <tr>
+                
+        <th>
+            Stanica
+        </th>
+        <th>
+            Vreme Dolaska
+        </th>
+        <th>
+            Vreme Polaska
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+<tr>
+    @foreach (var stanica in ViewBag.Stanice)
+    {
+        if (item.StanicaID == stanica.StanicaID)
+        { 
+        <td>
+            @stanica.Grad
+        </td>
+        }
+    }
+
+    <td>
+        @Html.DisplayFor(modelItem => item.VremeDolaska)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.VremePolaska)
+    </td>
+    <td>
+        @Html.ActionLink("Edit", "IzmeniVremeDodatnaStanica","Admin", new {  DodatnaStanicaID = item.DodatnaStanicaID },
+                   new { @class = "btn btn-primary" })
+    </td>
+    
+</tr>
+}
+
+</table>

@@ -1,0 +1,71 @@
+﻿@model Zeleznicka_stanica.Models.DodatnaStanicaBO
+
+@{
+    ViewBag.Title = "IzmeniVremeDodatnaStanica";
+}
+
+<h2>Izmeni Vreme</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+<div class="form-horizontal">
+
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @*<div class="form-group">
+            @Html.LabelFor(model => model.DodatnaStanicaID, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.DodatnaStanicaID, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.DodatnaStanicaID, "", new { @class = "text-danger" })
+            </div>
+        </div>*@
+
+    @Html.HiddenFor(model => model.DodatnaStanicaID)
+
+    @*<div class="form-group">
+            @Html.LabelFor(model => model.RedVoznjeID, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.RedVoznjeID, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.RedVoznjeID, "", new { @class = "text-danger" })
+            </div>
+        </div>*@
+
+    @Html.HiddenFor(model => model.RedVoznjeID)
+
+    @*<div class="form-group">
+            @Html.LabelFor(model => model.StanicaID, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.StanicaID, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.StanicaID, "", new { @class = "text-danger" })
+            </div>
+        </div>*@
+
+    @Html.HiddenFor(model => model.StanicaID)
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.VremeDolaska,"Vreme dolaska", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.VremeDolaska, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.VremeDolaska, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.VremePolaska,"Vreme polaska", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.VremePolaska, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.VremePolaska, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Sačuvaj" class="btn btn-default" />
+        </div>
+    </div>
+</div>
+}
+
+

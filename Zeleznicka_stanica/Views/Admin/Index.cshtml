@@ -1,0 +1,167 @@
+﻿@model IEnumerable<Zeleznicka_stanica.Models.KorisnikBO>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Dobrodosli @User.Identity.Name</h2>
+
+
+
+
+<table class="table">
+    <tr>
+        <th>@Html.DisplayNameFor(model => model.KorisnikID)</th>
+
+        <th>@Html.DisplayNameFor(model => model.StanicaID)</th>
+
+        <th>@Html.DisplayNameFor(model => model.Ime)</th>
+
+        <th>@Html.DisplayNameFor(model => model.Prezime)</th>
+
+        <th>@Html.DisplayNameFor(model => model.Email)</th>
+
+        <th>@Html.DisplayNameFor(model => model.Status)</th>
+
+    </tr>
+
+    @foreach (var item in ViewBag.korisnici)
+    {
+        <tr>
+            <td>@item.KorisnikID</td>
+
+            <td>@item.StanicaID</td>
+
+            <td>@item.Ime</td>
+
+            <td>@item.Prezime</td>
+
+            <td>@item.Email</td>
+
+            <td>@item.Status</td>
+            @if (User.IsInRole("admin"))
+            {
+                <td>
+                    @Html.ActionLink("Edit", "IzmeniKorisnika", new { id = item.KorisnikID }, new { @class = "btn btn-primary" })
+
+                    @Html.ActionLink("Obriši", "BrisiKorisnika", new { id = item.KorisnikID },
+                 new { onclick = "return confirm('Are you sure that you want to delete?') ", @class = "btn btn-danger" })
+                </td>
+            }
+        </tr>
+    }
+
+</table>
+
+
+<h2>Red voznje</h2>
+
+<table class="table">
+    <tr>
+        <th>Red voznje ID</th>
+        @if (User.IsInRole("admin"))
+        {
+
+
+
+
+            <th>Voz ID</th>
+        }
+        <th>Datum</th>
+        <th>Vreme</th>
+        <th>Peron</th>
+        <th>Kasni</th>
+        <th>Polazak</th>
+        <th>Odrediste</th>
+        <th>Cena</th>
+        <th>Otkazan</th>
+
+    </tr>
+
+    @foreach (var item in ViewBag.redVoznje)
+    {
+<tr>
+    <td>@item.RedVoznjeID</td>
+    @if (User.IsInRole("admin"))
+    {
+
+        <td>@item.VozID</td>
+    }
+    <td>@item.Datum.ToString("dd/MM/yyyy")</td>
+    <td>@item.Vreme</td>
+    <td>@item.Peron</td>
+    <td>@item.Kasni</td>
+    @foreach (var stanica in ViewBag.stanice)
+    {
+        if (item.PolazakID == stanica.StanicaID)
+        {
+            <td>@stanica.Grad</td>
+        }
+
+
+    }
+    @foreach (var stanica in ViewBag.stanice)
+    {
+        if (item.OdredisteID == stanica.StanicaID)
+        {
+            <td>@stanica.Grad</td>
+        }
+    }
+    @*<td>@item.PolazakID</td>*@
+    @*<td>@item.OdredisteID</td>*@
+    <td>@item.Cena</td>
+    <td>@item.Otkazan</td>
+    <td>
+        @Html.ActionLink("Edit", "IzmeniRedVoznje", new { id = item.RedVoznjeID }, new { @class = "btn btn-primary" })
+
+        @Html.ActionLink("Detalji", "RedVoznjeDetalji", "Korisnik", new { RedVoznjeID = item.RedVoznjeID, VozID = item.VozID },
+       new { @class = "btn btn-info" })
+    </td>
+</tr>
+    }
+
+</table>
+
+<h2>Rezervacije</h2> 
+ @Html.ActionLink("Dodaj", "NapraviRezervacijuAdmin", null, new { @class = "btn btn-primary" })
+<br />
+<br />
+
+<table class="table">
+    <tr>
+        <th>Rezervacija ID</th>
+        <th>Korisnik ID</th>
+        <th>Red voznje ID</th>
+        <th>Datum</th>
+        <th>Vreme</th>
+    </tr>
+
+    @foreach (var item in ViewBag.rezervacije)
+    {
+        <tr>
+            <td>@item.RezervacijaID</td>
+            <td>@item.KorisnikID</td>
+            <td>@item.RedVoznjeID</td>
+            <td>@item.Datum.ToString("dd/MM/yyyy")</td>
+            <td>@item.Vreme.ToString("hh':'mm':'ss")</td>
+            <td>
+                @Html.ActionLink("Obriši", "BrisiRezervaciju", "Korisnik", new { RezervacijaID = item.RezervacijaID },
+                   new { onclick = "return confirm('Are you sure that you want to delete?') ", @class = "btn btn-danger" })
+            </td>
+        </tr>
+    }
+</table>
+
+<br />
+<br />
+
+@if (TempData["Pun"] != null)
+{
+    <script type="text/javascript">
+
+        window.onload = function () {
+            alert("Ovaj voz nema slobodnih mesta");
+        };
+    </script>
+
+}

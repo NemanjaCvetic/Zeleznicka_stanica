@@ -1,0 +1,37 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\Zavr\u0161ni rad\\projekat\\Zeleznicka_stanica\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{5EAF9E7F-F9E8-4786-A712-8C3F8CD78A8F}|Zeleznicka_stanica.csproj|d:\\zavr\u0161ni rad\\projekat\\zeleznicka_stanica\\models\\efrepository\\korisnikrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5EAF9E7F-F9E8-4786-A712-8C3F8CD78A8F}|Zeleznicka_stanica.csproj|solutionrelative:models\\efrepository\\korisnikrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "KorisnikRepository.cs",
+              "DocumentMoniker": "D:\\Zavr\u0161ni rad\\projekat\\Zeleznicka_stanica\\Models\\EFRepository\\KorisnikRepository.cs",
+              "RelativeDocumentMoniker": "Models\\EFRepository\\KorisnikRepository.cs",
+              "ToolTip": "D:\\Zavr\u0161ni rad\\projekat\\Zeleznicka_stanica\\Models\\EFRepository\\KorisnikRepository.cs",
+              "RelativeToolTip": "Models\\EFRepository\\KorisnikRepository.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-02T21:14:36.614Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
